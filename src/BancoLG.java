@@ -3,16 +3,13 @@ import java.util.Scanner;
 public class BancoLG {
     public static void main(String[] args) {
         Scanner leitor = new Scanner(System.in);
-
-        int opcao = 0;
-        double saldo = 0;
+        
+        double saldo;
 
         System.out.println("======== Crie sua conta! ========");
         System.out.println("Digite seu nome:");
 
         String nome = leitor.next();
-
-        String tipoConta = "Indefinido";
 
         String menuTipoConta = """
                 Escolha seu tipo de conta
@@ -20,19 +17,21 @@ public class BancoLG {
                 2- Poupança
                 """;
         //========================================================================================
-        while (opcao != 3){
-            System.out.println(menuTipoConta);
-            opcao = leitor.nextInt();
-
-            if (opcao == 1){
-                tipoConta = tipoConta.replaceAll("Indefinido", "Corrente");
-
-            } else if (opcao == 2) {
-                tipoConta = tipoConta.replaceAll("Indefinido", "Poupança");
-
-            }else{
-                System.out.println("Opcão invalida, tente novamente!");
-            }
+        System.out.println(menuTipoConta);
+        int opcaoConta = leitor.nextInt();
+        String contaEscolhida = "";
+        switch (opcaoConta){
+            case 1:
+                contaEscolhida = "Corrente";
+                System.out.println("Conta corrente escolhida");
+                break;
+            case 2:
+                contaEscolhida = "Poupança";
+                System.out.println("Conta poupança escolhida");
+                break;
+            case 3:
+                System.out.println("Invalida");
+                break;
         }
         //=======================================================================================
         System.out.println("Digite o valor desejado para depositar em sua conta:");
@@ -43,7 +42,7 @@ public class BancoLG {
         System.out.println("=====================================");
         System.out.println("Dados Iniciais do Cliente:");
         System.out.println("\nNome do Cliente: " + nome);
-        System.out.println("Conta: " + tipoConta );
+        System.out.println("Conta: " + contaEscolhida);
         System.out.println("Saldo: " + " R$: " + saldo);
         System.out.println("=====================================");
 
@@ -73,6 +72,7 @@ public class BancoLG {
             } else if (operacaoDesejada == 3) {
                 System.out.println("Digite o valor que deseja transferir :");
                 double valorTransferido = leitor.nextDouble();
+                System.out.println("Voce transferiu: R$ " + valorTransferido);
                 if (valorTransferido > saldo){
                     System.out.println("Saldo Insuficiente");
                 }else {
